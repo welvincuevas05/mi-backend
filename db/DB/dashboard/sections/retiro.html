@@ -1,0 +1,50 @@
+<div class="deposito-container">
+    <div class="depo-header">
+        <button onclick="load('home')" class="btn-back">⬅ Volver</button>
+        <h2>Retirar Fondos</h2>
+    </div>
+
+    <div class="depo-card">
+        <h3 class="step-title">1. Configuración del retiro</h3>
+        <label>Selecciona Red de Retiro:</label>
+        <select id="withdraw-network" class="depo-input">
+            <option value="">Cargando redes...</option>
+        </select>
+
+        <label>Dirección de tu billetera (Wallet):</label>
+        <input type="text" id="withdraw-address" placeholder="Pega tu dirección aquí" class="depo-input">
+    </div>
+
+    <div class="depo-card">
+        <h3 class="step-title">2. Monto a retirar</h3>
+        <label>Monto (Mínimo $5.00):</label>
+        <input type="number" id="withdraw-amount" oninput="calcularComision()" placeholder="0.00" class="depo-input">
+        
+        <div style="background: #000; padding: 10px; border-radius: 8px; font-size: 0.9rem; border: 1px dashed #444;">
+            <p style="margin: 5px 0;">Comisión (5%): <span id="fee-amount" style="color: #ff4d4d;">$0.00</span></p>
+            <p style="margin: 5px 0; font-weight: bold;">Recibirás: <span id="total-receive" style="color: #2ecc71;">$0.00</span></p>
+        </div>
+
+        <button onclick="solicitarRetiro()" id="btn-submit-withdraw" class="btn-main-depo" style="margin-top: 20px;">Solicitar Retiro</button>
+    </div>
+
+    <div class="rules-box">
+        <h4>⚠️ Reglas de Retiro</h4>
+        <ul>
+            <li><strong>Mínimo:</strong> El monto mínimo es de $5.00 USD.</li>
+            <li><strong>Tasa:</strong> Se aplica un 5% de comisión administrativa.</li>
+            <li><strong>Redes:</strong> Verifique que su dirección corresponda a la red seleccionada.</li>
+        </ul>
+    </div>
+
+    <style>
+        .deposito-container { padding: 15px; color: white; }
+        .depo-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .btn-back { background: #333; border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; }
+        .depo-card { background: #1a1a1a; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #333; }
+        .step-title { font-size: 1rem; color: #ffa500; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .depo-input { width: 100%; padding: 12px; margin: 10px 0 20px; background: #000; border: 1px solid #444; color: white; border-radius: 8px; }
+        .btn-main-depo { width: 100%; padding: 15px; background: #ffa500; border: none; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; color: black; }
+        .rules-box { font-size: 0.8rem; color: #aaa; line-height: 1.6; padding: 0 10px; }
+    </style>
+</div>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Usuario</title>
+  <link rel="stylesheet" href="user.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<script>
+  // Verificación de seguridad inmediata
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user || user.role !== "user") {
+    window.location.href = "../auth/login.html";
+  }
+</script>
+
+<div id="content"></div>
+
+<nav class="bottom-nav">
+  <button onclick="load('home')" title="Inicio">🏠</button>
+  <button onclick="load('vip')" title="Invertir">💎</button>
+  <button onclick="load('transacciones')" title="Historial">📜</button>
+  <button onclick="load('invitados')" title="Referidos">🔥</button>
+  <button onclick="load('perfil')" title="Mi Perfil">👤</button>
+</nav>
+
+<div style="text-align: center; padding: 10px;">
+    <button onclick="logout()" class="btn-logout">Cerrar sesión</button>
+</div>
+
+<script>
+/**
+ * Función principal para cargar secciones sin recargar la página (SPA)
+ */
+function load(page) {
+  fetch(`sections/${page}.html`)
+    .then(res => {
+        if (!res.ok) throw new Error("No se pudo encontrar la sección");
+        return res.text();
+    })
+    .then(html => {
+      // 1. Inyectamos el HTML en el contenedor
+      document.getElementById("content").innerHTML = html;
+
+      // 2. Avisamos a user.js que la sección cambió para que ejecute las funciones de carga
+      window.dispatchEvent(new CustomEvent('load-section', { detail: page }));
+      
+      // 3. Scroll al inicio por si la página es larga
+      window.scrollTo(0, 0);
+    })
+    .catch(err => {
+        console.error("Error al cargar la página:", err);
+        document.getElementById("content").innerHTML = "<h2>Error al cargar el contenido</h2>";
+    });
+}
+
+/**
+ * Limpia los datos y sale al login
+ */
+function logout() {
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  window.location.href = "../auth/login.html";
+}
+
+// CARGA INICIAL: Cuando abres el panel, carga el Home por defecto
+document.addEventListener('DOMContentLoaded', () => {
+    load("home");
+});
+</script>
+
+<script src="user.js"></script>
+
+</body>
+</html>

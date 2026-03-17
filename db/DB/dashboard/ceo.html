@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CEO Panel | Administración</title>
+  <link rel="stylesheet" href="ceo.css">
+</head>
+<body>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = (user && user.role) ? user.role.toLowerCase().trim() : "";
+  if (!user || (role !== "admin" && role !== "ceo" && role !== "support")) {
+    alert("Acceso denegado.");
+    window.location.href = "../auth/login.html";
+  }
+</script>
+
+<header class="header">
+  <h1>CEO Panel</h1>
+  <span class="role" id="displayRole">Cargando...</span>
+</header>
+
+<nav class="menu" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+  <button class="menu-btn active" onclick="verTab('tab-usuarios', this)">Usuarios</button>
+  <button class="menu-btn" onclick="verTab('tab-auditoria', this)">Auditoría</button>
+  <button class="menu-btn" onclick="verTab('tab-transacciones', this)">Historial Global</button>
+  <button class="menu-btn" onclick="verTab('tab-redes', this)">⚙️ Redes</button>
+</nav>
+
+<section class="stats">
+  <div class="stat-card">
+    <p>Usuarios</p>
+    <h2 id="stat-users">0</h2>
+  </div>
+  <div class="stat-card">
+    <p>Depósitos</p>
+    <h2 id="stat-deposits">$0.00</h2>
+  </div>
+  <div class="stat-card">
+    <p>Retiros</p>
+    <h2 id="stat-withdrawals">$0.00</h2>
+  </div>
+</section>
+
+<div id="tab-usuarios" class="seccion-tab">
+  <section class="content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2 style="margin:0; font-size: 1.5rem;">Gestión de Usuarios</h2>
+      <button class="btn-add" id="btn-ajuste-manual" style="display: none; background: #2ecc71; border-radius: 8px;" onclick="abrirModalAjuste()">+ Nuevo Ajuste</button>
+    </div>
+
+    <div class="search-box-v2" style="background: #12263a; padding: 10px; border-radius: 12px; display: flex; gap: 10px; border: 1px solid #1a3a5a;">
+      <input type="text" id="search-user" placeholder="ID, Email o Username..." 
+             style="flex: 1; background: transparent; border: none; color: white; padding: 10px; outline: none;">
+      <button onclick="buscarUsuarioProfundo()" 
+              style="background: #f4a261; color: #0b1c2d; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+        🔍 Buscar
+      </button>
+    </div>
+
+    <div id="seccion-expediente" class="expediente-container" style="display:none; margin-top:20px;"></div>
+  </section>
+</div>
+
+<div id="tab-auditoria" class="seccion-tab" style="display:none;">
+  <section class="content">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+        <button class="back-btn" onclick="irAtras()">⬅</button>
+        <h2>📥 Depósitos Pendientes</h2>
+    </div>
+    <div class="table">
+      <div class="row header-row">
+        <span>Usuario</span><span>Monto</span><span>Red</span><span>TXID</span><span>Acción</span>
+      </div>
+      <div id="lista-depositos-pendientes"></div>
+    </div>
+    
+    <h2 style="margin-top: 30px; margin-bottom: 15px;">📤 Retiros por Procesar</h2>
+    <div class="table">
+      <div class="row header-row">
+        <span>Usuario</span><span>Monto</span><span>Red</span><span>Billetera</span><span>Acción</span>
+      </div>
+      <div id="lista-retiros-pendientes"></div>
+    </div>
+  </section>
+</div>
+
+<div id="tab-transacciones" class="seccion-tab" style="display:none;">
+  <section class="content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button class="back-btn" onclick="irAtras()">⬅</button>
+            <h2>📋 Historial Global</h2>
+        </div>
+        <button class="menu-btn" onclick="cargarAuditoriaGlobal()" style="font-size: 12px;">🔄 Actualizar</button>
+    </div>
+    <div class="table">
+      <div class="row header-row">
+        <span>Fecha</span><span>Usuario</span><span>Tipo</span><span>Monto</span><span>Admin</span>
+      </div>
+      <div id="lista-auditoria-general"></div>
+    </div>
+  </section>
+</div>
+
+<div id="tab-redes" class="seccion-tab" style="display:none;">
+  <section class="content">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+        <button class="back-btn" onclick="irAtras()">⬅</button>
+        <h2>⚙️ Configuración de Redes</h2>
+    </div>
+
+   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
+    <input type="text" id="net-name" placeholder="Red (ej: TRC20)" style="padding:10px; border-radius:5px; border:1px solid #333; background:#0d1a29; color:white;">
+    <input type="text" id="net-curr" placeholder="Moneda (ej: USDT)" style="padding:10px; border-radius:5px; border:1px solid #333; background:#0d1a29; color:white;">
+    <input type="text" id="net-addr" placeholder="Wallet (Si es depósito)" style="padding:10px; border-radius:5px; border:1px solid #333; background:#0d1a29; color:white;">
+    
+    <div style="display:flex; flex-direction:column; gap:2px;">
+        <label style="font-size:0.6rem; color:#aaa;">Imagen QR</label>
+        <input type="file" id="net-qr-file" accept="image/*" style="padding:5px; border-radius:5px; border:1px solid #333; background:#0d1a29; color:white; font-size:0.7rem;">
+    </div>
+
+    <select id="net-type" style="padding:10px; border-radius:5px; border:1px solid #333; background:#0d1a29; color:white;">
+        <option value="deposit">📥 Depósito</option>
+        <option value="withdrawal">📤 Retiro</option>
+    </select>
+    <button onclick="crearNuevaRed()" style="background: #2ecc71; color: white; border:none; border-radius: 5px; font-weight:bold; cursor:pointer;">Guardar</button>
+</div>
+
+    <div id="contenedor-redes" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+        </div>
+  </section>
+</div>
+
+<div id="modal-rechazo" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="background: #12263a; padding: 25px; border-radius: 15px; max-width: 400px; margin: auto; text-align: center;">
+        <h3 style="color: #e74c3c;">🚫 Motivo de Rechazo</h3>
+        <textarea id="reject-reason" placeholder="Escribe el motivo..." style="width: 100%; height: 100px; margin: 15px 0; border-radius: 8px; padding: 10px; background: #0d1a29; color: white; border: 1px solid #333;"></textarea>
+        <div style="display: flex; gap: 10px;">
+            <button id="btn-confirm-reject" class="btn-approve" style="flex:1; background: #e74c3c;">Confirmar</button>
+            <button onclick="cerrarModalRechazo()" class="btn-cancel" style="flex:1;">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalAjuste" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="background: #12263a; padding: 25px; border-radius: 15px; max-width: 450px; margin: auto;">
+        <h3 style="color: #f4a261; text-align: center;">💰 Ajuste Manual</h3>
+        <div style="margin-top: 15px;">
+            <input type="text" id="adj-identifier" placeholder="Email o ID" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: #0d1a29; color: white; border: 1px solid #333;">
+            <input type="number" id="adj-amount" placeholder="Monto ($)" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: #0d1a29; color: white; border: 1px solid #333;">
+            <input type="text" id="adj-title" value="Ajuste de Saldo" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; background: #0d1a29; color: white; border: 1px solid #333;">
+            <textarea id="adj-description" placeholder="Descripción..." style="width: 100%; height: 60px; padding: 10px; border-radius: 5px; background: #0d1a29; color: white; border: 1px solid #333;"></textarea>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button onclick="enviarAjuste('add')" class="btn-approve" style="flex:1; padding: 12px; background: #2ecc71;">➕ Sumar</button>
+            <button onclick="enviarAjuste('subtract')" class="btn-approve" style="flex:1; padding: 12px; background: #e74c3c;">➖ Restar</button>
+        </div>
+        <button onclick="cerrarModal()" style="width: 100%; margin-top: 10px; background: none; border: none; color: #666; cursor: pointer;">Cancelar</button>
+    </div>
+</div>
+
+<div style="padding: 40px 20px; text-align: center;">
+  <button class="btn-cancel" onclick="logout()" style="background: #333; padding: 10px 20px; border-radius: 8px; border: none; color: white; cursor: pointer;">Cerrar sesión segura</button>
+</div>
+
+<script src="ceo.js"></script>
+<script>
+    // LÓGICA DE NAVEGACIÓN ENTRE TABS
+    function verTab(idTab, boton) {
+        document.querySelectorAll('.seccion-tab').forEach(s => s.style.display = 'none');
+        document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(idTab).style.display = 'block';
+        if(boton) boton.classList.add('active');
+        
+        // CARGAS DINÁMICAS AL ENTRAR
+        if(idTab === 'tab-transacciones') cargarAuditoriaGlobal();
+        if(idTab === 'tab-auditoria') { cargarDepositos(); cargarRetirosAdmin(); }
+        if(idTab === 'tab-redes') if(typeof cargarRedesAdmin === 'function') cargarRedesAdmin();
+    }
+
+    function irAtras() {
+        verTab('tab-usuarios', document.querySelector('.menu-btn'));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('displayRole').innerText = role.toUpperCase();
+        if (role === 'ceo' || role === 'admin') {
+            document.getElementById('btn-ajuste-manual').style.display = 'block';
+        }
+        // Carga inicial obligatoria
+        if(typeof cargarStats === 'function') cargarStats();
+        if(typeof cargarRedesAdmin === 'function') cargarRedesAdmin();
+    });
+
+    function logout() { localStorage.clear(); window.location.href = "../auth/login.html"; }
+</script>
+</body>
+</html>

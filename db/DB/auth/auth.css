@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #0b1c2d;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 360px;
+  padding: 20px;
+}
+
+.card {
+  background: #12263a;
+  border-radius: 18px;
+  padding: 26px;
+  color: #ffffff;
+}
+
+.logo {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.tabs {
+  display: flex;
+  background: #0e2235;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 11px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #b0c4d8;
+}
+
+.tab.active {
+  background: #f4a261;
+  color: #0b1c2d;
+  font-weight: 600;
+}
+
+.form input {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 14px;
+  background: #0e2235;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.form input::placeholder {
+  color: #7fa1c2;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #f4a261;
+}
+
+.btn {
+  width: 100%;
+  padding: 13px;
+  background: #f4a261;
+  border: none;
+  border-radius: 12px;
+  color: #0b1c2d;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #b0c4d8;
+}
+
+.footer-text a {
+  color: #f4a261;
+  text-decoration: none;
+}
+

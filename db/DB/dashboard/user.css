@@ -1,0 +1,220 @@
+/* =========================================
+   SISTEMA DE DISEÑO CRIPTO HOME
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lexend', 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #050f26; 
+  color: #EAEAEA;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.app { padding-bottom: 90px; }
+
+/* CONTENEDORES UNIVERSALES */
+/* Esto asegura que las secciones de referidos y dashboard no se vean "flacas" */
+.perfil-container, .vip-container, .referidos-container, .dashboard-container {
+    padding: 20px;
+    width: 100%;
+    max-width: 500px; /* Ancho ideal para móviles y centrado en PC */
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* BRANDING CONSISTENTE */
+.brand-header { text-align: center; padding: 15px 0 25px; }
+.logo-wrapper {
+    width: 85px; height: 85px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    border: 3px solid #F7931A;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 0 20px rgba(247, 147, 26, 0.2);
+}
+.main-logo { width: 100%; height: 100%; object-fit: cover; }
+.brand-title { font-size: 1.4rem; font-weight: 800; color: #fff; text-transform: uppercase; }
+.brand-title .accent { color: #F7931A; }
+
+/* TARJETAS PREMIUM (Dashboard, VIP, Referidos) */
+/* VIP CARD PREMIUM */
+.vip-card-v2 {
+    background: #0d1b3d;
+    border: 1px solid #1a2e5a;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.vip-card-v2 h4 {
+    color: #F7931A;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.plan-info {
+    margin-bottom: 20px;
+}
+
+.plan-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.plan-info strong {
+    color: #fff;
+}
+
+.profit-text {
+    color: #2ecc71 !important; /* Verde brillante para ganancias */
+    font-weight: bold;
+}
+
+/* BOTÓN VIP */
+.btn-vip-action {
+    width: 100%;
+    background: linear-gradient(90deg, #F7931A, #ff6b00);
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-vip-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(247, 147, 26, 0.4);
+}
+
+/* DASHBOARD (Basado en tu imagen image_042ba0.png) */
+.balance-card {
+    background: linear-gradient(135deg, #0d1b3d 0%, #102a5a 100%);
+    text-align: center;
+    border-left: 4px solid #F7931A;
+}
+.balance-card h1 { color: #F7931A; font-size: 2.2rem; margin: 10px 0; }
+.balance-card p { color: #888; font-size: 0.8rem; text-transform: uppercase; }
+
+/* BOTONES DE ACCIÓN (Depositar, Retirar, etc) */
+.btn-primary { background: #F7931A; color: #000; border: none; }
+.btn-secondary { background: #1a2e5a; color: #fff; border: 1px solid #333; }
+.btn-accent { background: #8e44ad; color: #fff; border: none; } /* Color para Invertir en VIP */
+
+.action-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+.action-button:active { transform: scale(0.98); }
+
+/* REFERIDOS (image_042b43.png) */
+.invite-code-box {
+    background: #050f26;
+    border: 2px dashed #F7931A;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+.invite-code-box h2 { color: #F7931A; letter-spacing: 2px; }
+.copy-btn {
+    background: #fff; color: #000; border: none; padding: 8px 15px;
+    border-radius: 5px; font-weight: bold; font-size: 0.8rem;
+}
+
+/* TABLAS DE REFERIDOS / HISTORIAL */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
+.data-table th { color: #888; text-align: left; padding: 10px; border-bottom: 1px solid #1a2e5a; }
+.data-table td { padding: 12px 10px; border-bottom: 1px solid #081430; }
+
+/* PERFIL (image_042b1f.png) */
+.avatar-circle {
+    width: 60px; height: 60px; background: #F7931A;
+    border-radius: 50%; margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #000; font-weight: bold; font-size: 1.5rem;
+}
+.menu-item-btn {
+    background: #0d1b3d; width: 100%; padding: 16px;
+    border-radius: 15px; border: 1px solid #1a2e5a;
+    display: flex; align-items: center; color: #fff; margin-bottom: 12px;
+}
+.menu-item-btn .icon { margin-right: 15px; font-size: 1.2rem; }
+
+/* NAVBAR (Fija abajo) */
+.bottom-nav {
+    position: fixed; bottom: 0; width: 100%;
+    background: #0d1b3d; display: flex; justify-content: space-around;
+    padding: 15px 0; border-top: 1px solid #1a2e5a; z-index: 1000;
+}
+.bottom-nav a { color: #888; text-decoration: none; font-size: 1.3rem; transition: 0.3s; }
+.bottom-nav a.active { color: #F7931A; }
+
+/* BOTÓN CERRAR SESIÓN */
+.btn-logout {
+    background: rgba(255, 68, 68, 0.1);
+    color: #ff4444;
+    border: 1px solid #ff4444;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* --- NUEVOS CONTROLES DE SEGURIDAD CEO --- */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+/* Estilos para que el input de clave combine con tu diseño */
+#new-pass-admin {
+    border: 1px solid #333 !important;
+    outline: none;
+    transition: 0.3s;
+}
+
+#new-pass-admin:focus {
+    border-color: #f4a261 !important;
+}
+
+/* Ajuste para que los botones de sanción no se vean pegados en móvil */
+@media (max-width: 600px) {
+    .admin-action-grid {
+        grid-template-columns: 1fr !important; /* En celular, uno sobre otro */
+    }
+}

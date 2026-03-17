@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1 class="logo">Cripto Home</h1>
+
+    <div class="tabs">
+      <a href="login.html" class="tab active">Login</a>
+      <a href="register.html" class="tab">Register</a>
+    </div>
+
+    <form id="loginForm" class="form">
+      <input type="text" id="username" placeholder="Correo electrónico" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit" class="btn">Iniciar sesión</button>
+    </form>
+
+    <p class="footer-text" id="errorMsg"></p>
+
+    <p class="footer-text">
+      <a href="#">¿Olvidaste tu contraseña?</a> (Soporte)
+    </p>
+
+  </div>
+</div>
+<script src="auth.js"></script>
+</body>
+</html>

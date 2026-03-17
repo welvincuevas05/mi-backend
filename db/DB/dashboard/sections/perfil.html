@@ -1,0 +1,282 @@
+<style>
+    :root {
+        --primary-bg: #0b1c2d;
+        --card-bg: #12263a;
+        --accent: #f4a261;
+        --text-main: #ffffff;
+        --text-dim: #b0c4d8;
+        --danger: #e74c3c;
+        --success: #2ecc71;
+    }
+
+    .perfil-container {
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: var(--text-main);
+    }
+
+    /* Header y Logo */
+    .brand-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .logo-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--accent);
+        box-shadow: 0 0 15px rgba(244, 162, 97, 0.3);
+    }
+
+    .main-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .brand-title {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+
+    .brand-title .accent {
+        color: var(--accent);
+    }
+
+    /* Tarjeta de Perfil V2 */
+    .profile-card-v2 {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin-bottom: 25px;
+    }
+
+    .avatar-circle {
+        width: 70px;
+        height: 70px;
+        background: var(--accent);
+        color: var(--primary-bg);
+        font-size: 1.8rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+    }
+
+    #perf-username {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .user-id-tag {
+        display: inline-block;
+        background: rgba(0, 0, 0, 0.3);
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        margin: 8px 0;
+        font-family: monospace;
+    }
+
+    .user-email {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .status-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 0.85rem;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--success);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--success);
+    }
+
+    /* Grupo de Ajustes (Botones) */
+    .settings-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .menu-item-btn {
+        width: 100%;
+        background: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.2s;
+        text-align: left;
+    }
+
+    .menu-item-btn:active {
+        transform: scale(0.98);
+        background: #1a344d;
+    }
+
+    .menu-item-btn .icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+    }
+
+    .menu-item-btn .text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-item-btn .title {
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .menu-item-btn .desc {
+        color: var(--text-dim);
+        font-size: 0.75rem;
+    }
+
+    .menu-item-btn .arrow {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+    }
+
+    /* Formulario de Cambio de Clave */
+    .hidden-form {
+        background: #0e2235;
+        padding: 15px;
+        border-radius: 12px;
+        margin-top: -5px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input-dark {
+        background: var(--primary-bg);
+        border: 1px solid #1a344d;
+        padding: 12px;
+        border-radius: 8px;
+        color: white;
+        outline: none;
+    }
+
+    .input-dark:focus {
+        border-color: var(--accent);
+    }
+
+    .btn-confirm-pass {
+        background: var(--accent);
+        color: var(--primary-bg);
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    /* Cerrar Sesión */
+    .logout-container {
+        margin-top: 30px;
+    }
+
+    .btn-logout-v2 {
+        width: 100%;
+        background: transparent;
+        border: 1px solid var(--danger);
+        color: var(--danger);
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-logout-v2:hover {
+        background: var(--danger);
+        color: white;
+    }
+</style>
+
+<div class="perfil-container">
+    <div class="brand-header">
+        <div class="logo-wrapper">
+            <img src="../../assets/logo.jpg" alt="Logo" class="main-logo">
+        </div>
+        <h1 class="brand-title">CRIPTO <span class="accent">HOME</span></h1>
+    </div>
+
+    <div class="profile-card-v2">
+        <div class="avatar-circle">
+            <span id="initial-letter">U</span>
+        </div>
+        <h2 id="perf-username">Cargando...</h2>
+        <div class="user-id-tag">ID: <span id="perf-id">---</span></div>
+        <p class="user-email" id="perf-email">usuario@ejemplo.com</p>
+        <div class="status-badge">
+            <span class="dot"></span> <span id="perf-status">Activo</span>
+        </div>
+    </div>
+
+    <div class="settings-group">
+        <button class="menu-item-btn" onclick="toggleMenuClave()">
+            <span class="icon">🔐</span>
+            <div class="text">
+                <span class="title">Seguridad</span>
+                <span class="desc">Cambiar mi contraseña</span>
+            </div>
+            <span class="arrow">❯</span>
+        </button>
+
+        <div id="menu-clave" class="hidden-form" style="display: none;">
+            <input type="password" id="old-pass" placeholder="Contraseña actual" class="input-dark">
+            <input type="password" id="new-pass" placeholder="Nueva contraseña" class="input-dark">
+            <input type="password" id="confirm-new-pass" placeholder="Confirmar nueva" class="input-dark">
+            <button onclick="procesarCambioPassword()" class="btn-confirm-pass">Guardar Nueva Clave</button>
+        </div>
+
+        <button class="menu-item-btn" onclick="window.open('https://t.me/Cripto_Home_servicios_al_cliente')">
+            <span class="icon">🎧</span>
+            <div class="text">
+                <span class="title">Soporte VIP</span>
+                <span class="desc">Atención 24/7 vía Telegram</span>
+            </div>
+            <span class="arrow">❯</span>
+        </button>
+    </div>
+
+    <div class="logout-container">
+        <button onclick="logout()" class="btn-logout-v2">Cerrar Sesión</button>
+    </div>
+</div>
+
+<script>
+    function toggleMenuClave() {
+        const menu = document.getElementById('menu-clave');
+        menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+    }
+</script>

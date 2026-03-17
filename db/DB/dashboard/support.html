@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Soporte | Cripto Home</title>
+    
+    <script>
+        // SEGURIDAD PROACTIVA: Si no es soporte, lo expulsa antes de cargar el HTML
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || user.role !== 'support') window.location.href = "../auth/login.html";
+    </script>
+</head>
+<body style="background: #08121d; color: white; font-family: sans-serif;">
+
+    <nav style="background: #1a3a5a; padding: 15px; display: flex; justify-content: space-between;">
+        <span>🎧 Centro de Soporte</span>
+        <button onclick="localStorage.clear(); location.href='../auth/login.html'" style="background: #e74c3c; border:none; color:white; padding:5px 10px; border-radius:4px; cursor:pointer;">Salir</button>
+    </nav>
+
+    <main style="max-width: 600px; margin: 20px auto; padding: 10px;">
+        
+        <div style="background: #12263a; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <h2 style="margin-top:0; font-size: 1.2rem;">Buscar Usuario</h2>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="search-user-support" placeholder="Email o ID..." style="flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #333; background: #08121d; color: white;">
+                <button onclick="buscarUsuarioSoporte()" style="background: #3498db; border:none; color:white; padding: 10px 20px; border-radius:5px; cursor:pointer; font-weight:bold;">🔍</button>
+            </div>
+        </div>
+
+        <div id="panel-soporte-resultado" style="display:none; margin-top:20px; border-radius:10px; overflow:hidden; border: 1px solid #1a3a5a;">
+            </div>
+
+    </main>
+
+    <script src="support-logic.js"></script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: #0b1c2d;
+  color: white;
+  padding-bottom: 30px;
+}
+
+.header {
+  padding: 16px;
+  background: #12263a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.role {
+  background: #f4a261;
+  color: #0b1c2d;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 16px;
+}
+
+.stat-card {
+  background: #12263a;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat-card p {
+  font-size: 12px;
+  color: #b0c4d8;
+}
+
+.menu {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  gap: 10px;
+}
+
+.menu-btn {
+  background: #0e2235;
+  border: none;
+  color: #b0c4d8;
+  padding: 10px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.menu-btn.active {
+  background: #f4a261;
+  color: #0b1c2d;
+  font-weight: 600;
+}
+
+.content {
+  padding: 16px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  background: #0e2235;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.search-box button {
+  background: #f4a261;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #0b1c2d;
+  font-weight: 600;
+}
+
+.table {
+  background: #12263a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  padding: 12px;
+  font-size: 13px;
+}
+
+.header-row {
+  background: #0e2235;
+  font-weight: 600;
+}
+
+.active {
+  color: #4caf50;
+}
+
+.suspended {
+  color: #ff9800;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  color: #f4a261;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.btn-approve:hover { background-color: #218838; }
+.btn-reject:hover { background-color: #c82333; }
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1.5fr; /* Esto le da más espacio al TXID y a las acciones */
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #333333;
+    text-align: center;
+}
+
+.header-row {
+    font-weight: bold;
+    background-color: #1a1a1a;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #121212;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%; max-width: 450px;
+    border: 1px solid #333;
+    color: white;
+}
+
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;
+}
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 5px; font-size: 0.9em; color: #aaa; }
+.input-group input, .input-group textarea {
+    width: 100%; padding: 10px; background: #1e1e1e; border: 1px solid #444;
+    border-radius: 6px; color: white;
+}
+
+.modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.btn-add { background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; }
+.btn-subtract { background: #dc3545; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; }
+.btn-cancel { grid-column: span 2; background: #444; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; }
+
+.close-modal { cursor: pointer; font-size: 1.5em; }
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    display: none; /* Se cambia a flex con JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: #1a1a1a; padding: 25px; border-radius: 15px;
+    width: 90%; max-width: 400px; border: 1px solid #333;
+}
+#reject-reason {
+    width: 100%; background: #000; color: white; border: 1px solid #444;
+    padding: 10px; border-radius: 8px; margin: 15px 0; font-family: inherit;
+}
+.modal-actions { display: flex; gap: 10px; }
+.btn-confirm-red { background: #e74c3c; color: white; border: none; padding: 10px; flex: 1; border-radius: 5px; cursor: pointer; }
+.btn-cancel { background: #333; color: white; border: none; padding: 10px; flex: 1; border-radius: 5px; cursor: pointer; }
+.wallet-address { font-size: 0.8rem; color: #aaa; overflow: hidden; text-overflow: ellipsis; }
+
+/* --- OPTIMIZACIÓN CEO MÓVIL --- */
+@media (max-width: 650px) {
+    /* 1. Ajustar estadísticas para que no sean 3 columnas tan apretadas */
+    .stats {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en vez de 3 */
+    }
+    
+    .stat-card:last-child {
+        grid-column: span 2; /* El último card ocupa todo el ancho */
+    }
+
+    /* 2. Transformar la tabla en "Cards" (Crucial para retiros/depósitos) */
+    .row {
+        display: block; /* Quitamos el grid */
+        text-align: left;
+        padding: 15px;
+        position: relative;
+        margin-bottom: 10px;
+        border: 1px solid #333;
+        background: #162a3f;
+    }
+
+    .header-row {
+        display: none; /* Escondemos el encabezado de la tabla en móvil */
+    }
+
+    .row div {
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Añadir etiquetas antes de los datos */
+    .row div::before {
+        content: attr(data-label); /* Esto requiere que en el HTML pongas data-label="User" */
+        font-weight: bold;
+        color: #f4a261;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+
+    /* 3. Botones más grandes para dedos (Touch targets) */
+    .btn-approve, .btn-reject {
+        padding: 12px;
+        font-size: 14px;
+        width: 48%; /* Dos botones lado a lado */
+        margin-top: 10px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+.acciones-admin {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-approve-mini, .btn-reject-mini {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-approve-mini { background: #2ecc71; color: white; }
+.btn-reject-mini { background: #e74c3c; color: white; }
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid #f4a261;
+    color: #f4a261;
+    border-radius: 3px;
+    padding: 1px 4px;
+    margin-left: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+.copy-btn:hover {
+    background: #f4a261;
+    color: #0b1a2a;
+}
+
+/* Intro y Textos */
+.vip-container { padding: 20px; max-width: 600px; margin: 0 auto; }
+
+.vip-badge-main {
+    background: linear-gradient(90deg, #ffa500, #ff4500);
+    color: black;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.subtitle { color: #888; font-size: 0.9rem; margin-bottom: 30px; }
+
+/* Grid de Planes */
+.vip-grid-v2 {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna para que se vea bien en móvil */
+    gap: 20px;
+}
+
+/* Tarjeta VIP Individual */
+.vip-card-v2 {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.vip-card-v2:hover {
+    border-color: #ffa500;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 165, 0, 0.15);
+}
+
+.vip-card-v2 h4 {
+    color: #ffa500;
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
+    font-weight: 800;
+}
+
+.plan-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+.stat-item { display: flex; flex-direction: column; }
+
+.stat-label { color: #666; font-size: 0.7rem; text-transform: uppercase; }
+
+.stat-value { color: #fff; font-size: 1.1rem; font-weight: bold; }
+
+.stat-value.profit { color: #2ecc71; } /* Verde para la ganancia */
+
+/* Botón de Inversión */
+.btn-invest {
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-invest:hover {
+    background: #ffa500;
+    transform: scale(1.02);
+}
+
+.logo-wrapper.small { width: 70px; height: 70px; }
+
+.expediente-container {
+    margin-top: 25px;
+    background: #0d1a29; /* Fondo más oscuro para contrastar */
+    border-radius: 15px;
+    border: 1px solid #1a3a5a;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+    animation: slideDown 0.4s ease-out; /* Animación de entrada */
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-card {
+    background: #12263a;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.btn-approve, .btn-reject, .menu-btn {
+    transition: all 0.2s;
+}
+
+.btn-approve:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.btn-reject:hover { background: #c0392b !important; transform: translateY(-2px); }
+@media (max-width: 600px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr) !important; /* En móviles se verán 2 arriba y 2 abajo */
+    }
+}

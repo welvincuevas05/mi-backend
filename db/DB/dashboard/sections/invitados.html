@@ -1,0 +1,193 @@
+<style>
+    :root {
+        --bg-dark: #0b1c2d;
+        --card-bg: #12263a;
+        --accent: #f4a261;
+        --green: #2ecc71;
+        --text-dim: #b0c4d8;
+    }
+
+    .invitados-container {
+        padding: 15px;
+        max-width: 600px;
+        margin: 0 auto;
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Tarjetas principales */
+    .invite-card {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+    }
+
+    .invite-card h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #fff;
+    }
+
+    /* Caja del código */
+    .ref-link-box {
+        background: #08121d !important;
+        padding: 18px;
+        border-radius: 12px;
+        margin: 15px 0;
+        border: 1px dashed var(--accent);
+        color: var(--accent);
+        font-size: 1.4rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(244, 162, 97, 0.2);
+    }
+
+    .btn-copy {
+        background: #fff;
+        color: #000;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 100%;
+    }
+
+    .btn-copy:active {
+        transform: scale(0.95);
+        background: var(--accent);
+    }
+
+    /* Estadísticas Grid */
+    .stats-list {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-item span:last-child {
+        color: var(--accent);
+        font-weight: bold;
+    }
+
+    /* Dinero */
+    .money-display {
+        font-size: 2.2rem;
+        color: var(--green);
+        margin: 10px 0;
+        font-weight: 800;
+    }
+
+    /* Tabla Pro (Scroll Responsivo) */
+    .table-wrapper {
+        overflow-x: auto; /* Permite deslizar si no cabe */
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+
+    .referral-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 400px; /* Asegura que no se amontone */
+        font-size: 0.85rem;
+    }
+
+    .referral-table th {
+        background: rgba(0, 0, 0, 0.2);
+        color: var(--text-dim);
+        padding: 12px;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    .referral-table td {
+        padding: 14px 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #fff;
+    }
+
+    .lvl-tag {
+        background: var(--accent);
+        color: #000;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 0.7rem;
+    }
+
+    .ganancia-positiva {
+        color: var(--green) !important;
+        font-weight: bold;
+    }
+</style>
+
+<div class="invitados-container">
+    
+    <div class="invite-card">
+        <p style="color: var(--text-dim); margin-bottom: 5px;">Tu código de invitación</p>
+        <div id="myReferralLink" class="ref-link-box">
+            Cargando...
+        </div>
+        <button class="btn-copy" onclick="copiarEnlace()">Copiar código</button>
+    </div>
+
+    <div class="invite-card">
+        <h3>📊 Estadísticas</h3>
+        <div class="stats-list">
+            <div class="stat-item">
+                <span>Nivel 1</span>
+                <span id="count-l1">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Nivel 2</span>
+                <span id="count-l2">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Nivel 3</span>
+                <span id="count-l3">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="invite-card">
+        <h3>💰 Ganancias por invitados</h3>
+        <h2 id="totalCommissionsDisplay" class="money-display">$0.00</h2>
+        <p style="font-size: 0.75rem; color: var(--text-dim);">Comisiones acumuladas de tus referidos</p>
+    </div>
+
+    <div class="invite-card" style="text-align: left;">
+        <h3>📋 Mis Invitados Directos</h3>
+        <div class="table-wrapper">
+            <table class="referral-table">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Nivel</th>
+                        <th>Inversión</th>
+                        <th>Tu Ganancia</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaReferidos">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,122 @@
+<div class="home">
+
+    <div class="header">
+        <div>
+            <h2>Bienvenido</h2>
+            <span id="display-id">Cargando ID...</span> 
+        </div>
+        <div class="level">VIP Activo</div>
+    </div>
+
+    <div class="card balance-main">
+        <div class="balance-item">
+            <p>Saldo disponible</p>
+            <h2 id="balance-avail">$0.00</h2>
+        </div>
+        <div class="balance-divider"></div>
+        <div class="balance-item">
+            <p>En inversión</p>
+            <h2 id="balance-frozen">$0.00</h2>
+        </div>
+    </div>
+
+    <div class="actions-grid">
+        <div class="card stat-card">
+            <p>Ingresos diarios</p>
+            <h3 id="ingresos-diarios">+$0.00</h3>
+        </div>
+
+        <div class="buttons-group">
+            <button onclick="load('deposito')" class="btn-home btn-deposit">
+                <span>➕</span> Depositar
+            </button>
+            <button onclick="load('retiro')" class="btn-home btn-withdraw">
+                <span>➖</span> Retirar
+            </button>
+            <button onclick="load('vip')" class="btn-home" style="background: #8e44ad; color: white;">
+                <span>💎</span> Invertir en VIP
+            </button>
+        </div>
+    </div>
+
+    <div class="card recent-activity">
+        <h3>🚀 Mis Planes Activos</h3>
+        <div id="home-vip-list"> 
+            <p class="loading-text">Cargando tus planes activos...</p>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* BASE */
+    .home { padding: 15px; color: white; font-family: sans-serif; }
+    
+    /* HEADER */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    #display-id { font-size: 0.85rem; color: #888; text-transform: uppercase; }
+    .level { background: #ffa500; color: black; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+
+    /* TARJETAS COMUNES */
+    .card { background: #1a1a1a; border-radius: 15px; border: 1px solid #2a2a2a; margin-bottom: 15px; }
+
+    /* BALANCE */
+    .balance-main { 
+        display: flex; 
+        padding: 20px; 
+        background: linear-gradient(145deg, #252525, #111); 
+        justify-content: space-around;
+        align-items: center;
+    }
+    .balance-item { text-align: center; }
+    .balance-item p { font-size: 0.8rem; color: #aaa; margin-bottom: 5px; }
+    .balance-item h2 { font-size: 1.4rem; color: #fff; margin: 0; }
+    .balance-divider { width: 1px; height: 40px; background: #333; }
+
+    /* GRID DE ACCIONES */
+    .actions-grid { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 12px; 
+        margin-bottom: 20px; 
+    }
+
+    .stat-card { 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        margin-bottom: 0; 
+        border-bottom: 3px solid #2ecc71; 
+    }
+    .stat-card p { font-size: 0.8rem; color: #aaa; margin-bottom: 5px; }
+    .stat-card h3 { color: #2ecc71; font-size: 1.3rem; margin: 0; }
+
+    /* BOTONES */
+    .buttons-group { display: flex; flex-direction: column; gap: 8px; }
+    
+    .btn-home {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        transition: 0.2s;
+    }
+
+    .btn-deposit { background: #ffa500; color: #000; }
+    .btn-withdraw { background: #333; color: #fff; border: 1px solid #444; }
+    
+    .btn-home:active { transform: scale(0.96); }
+
+    /* ACTIVIDAD / VIP LIST */
+    .recent-activity { padding: 18px; }
+    .recent-activity h3 { font-size: 1rem; margin-top: 0; margin-bottom: 15px; color: #eee; }
+    .loading-text { color: #666; font-size: 0.9rem; text-align: center; }
+</style>

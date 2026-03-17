@@ -1,0 +1,25 @@
+<div class="section-container">
+    <h2 class="section-title">Mi Historial de Actividad</h2>
+    
+    <div class="transaction-list" id="user-transactions-list">
+        <p class="loading-text">Cargando movimientos...</p>
+    </div>
+</div>
+
+<style>
+    .transaction-list { padding: 15px; }
+    .transaction-card {
+        background: #1a1a1a;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-left: 4px solid #ffa500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .trans-info { display: flex; flex-direction: column; }
+    .trans-date { font-size: 0.75rem; color: #888; }
+    .trans-desc { font-size: 0.9rem; margin-top: 4px; }
+    .trans-amount { font-weight: bold; font-size: 1.1rem; }
+</style>

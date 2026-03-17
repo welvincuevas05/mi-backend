@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1 class="logo">CriptoHouse</h1>
+
+    <div class="tabs">
+      <a href="login.html" class="tab">Login</a>
+      <a href="register.html" class="tab active">Register</a>
+    </div>
+
+    <form class="form" id="registerForm">
+  <input type="text" id="regUsername" placeholder="Nombre de usuario" required>
+  <input type="email" id="regEmail" placeholder="Correo electrónico" required>
+  <input type="password" id="regPassword" placeholder="Contraseña" required>
+  <input type="password" id="regConfirmPassword" placeholder="Confirmar contraseña" required>
+  <input type="text" id="regInviteCode" placeholder="Código de invitación (opcional)">
+
+  <button type="submit" class="btn">Crear cuenta</button>
+  <p id="regErrorMsg" style="color: #ff4d4d; margin-top: 10px; font-size: 0.9rem;"></p>
+</form>
+<script src="auth.js"></script>
+    <p class="footer-text">
+      Al registrarte aceptas los términos
+    </p>
+
+  </div>
+</div>
+
+</body>
+</html>
